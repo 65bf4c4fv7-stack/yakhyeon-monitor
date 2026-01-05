@@ -8,6 +8,7 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
@@ -16,9 +17,9 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: 
-          pip install playwright
-          playwright install chromium
+        run: |
+          pip install playwright requests
+          playwright install --with-deps chromium
 
       - name: Run monitor
         env:
@@ -33,3 +34,4 @@ jobs:
           git add page_hash.txt || true
           git commit -m "update page hash" || true
           git push || true
+          
